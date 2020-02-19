@@ -29,13 +29,25 @@ namespace BallMaze
 
 		private void SetNextGate()
 		{
-			gate.Direction = GetNextGate();
+			gate.Direction = GetNextGateForward();
 		}
 
-		private int GetNextGate()
+		private int GetNextGateForward()
 		{
 			int nextGateIndex = gate.Direction + 1;
 			return nextGateIndex > passages.Count ? (nextGateIndex % passages.Count) : nextGateIndex;
+		}
+
+		private int GetNextGateBackward()
+		{
+			int nextGateInOppositeDirection = gate.Direction - 1;
+
+			if(nextGateInOppositeDirection == 0)
+			{
+				return passages.Count;
+			}
+
+			return nextGateInOppositeDirection;
 		}
 
 		public void AddPassage(IPassage passage)
@@ -55,34 +67,36 @@ namespace BallMaze
 			return children;
 		}
 
-		public string TraverseNextGate()
+		public string TraverseGateInOppositeDirection()
 		{
-			return passages[GetNextGate() - 1].TraverseNextGate();
+			return passages[GetNextGateBackward() - 1].TraverseGateInOppositeDirection();
 		}
 
-		public string TraverseForBallNo(decimal ballNumber)
+		public string TraverseForBallNo(int ballNumber)
 		{
-			int passageIndex = GetGatePositionFor(ballNumber) - 1;
-			decimal ballsPassedToNextPassage = Math.Ceiling(ballNumber / passages.Count);
+			int passageIndex = GetGatePositionAfter(ballNumber - 1) - 1;
+
+			int ballsPassedToNextPassage = (int)Math.Ceiling(Convert.ToDecimal(ballNumber) / passages.Count);
+
 			return passages[passageIndex].TraverseForBallNo(ballsPassedToNextPassage);
 		}
 
-		private int GetGatePositionFor(decimal ballNumber)
+		private int GetGatePositionAfter(int balls)
 		{
-			return ((int)ballNumber + passages.Count - gate.Direction) % passages.Count + 1;
-			//return (int)(ballNumber - ((int)Math.Floor((ballNumber / gate.Direction) * ballNumber)) + gate.Direction - 1);
+			if(balls == 0)
+			{
+				return gate.Direction;
+			}
 
-			//int nextGateIndex = gate.Direction + (int)ballNumber - 1;
-			//return nextGateIndex > passages.Count ? (nextGateIndex % passages.Count) : nextGateIndex;
+			int newPosition = gate.Direction + balls;
+			
+			if(newPosition > passages.Count)
+			{
+				int correctedPosition = newPosition % passages.Count;
+				return correctedPosition == 0 ?  passages.Count : correctedPosition;
+			}
 
-			//int gatePositionAfterBallNumber = (gate.Direction + (int)ballNumber - 1) % passages.Count + (passages.Count - gate.Direction);
-
-			//if(gatePositionAfterBallNumber == 0)
-			//{
-			//	return gate.Direction;
-			//}
-
-			//return gatePositionAfterBallNumber;
+			return newPosition;
 		}
 	}
 }
