@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,12 +35,12 @@ namespace BallMaze
             return new List<IPassage>() { this };
         }
 
-        public string TraverseNextGate()
+        public string TraverseGateInOppositeDirection()
         {
             return Name;
         }
 
-        public string TraverseForBallNo(decimal ballNo)
+        public string TraverseForBallNo(int ballNo)
         {
             return Name;
         }
