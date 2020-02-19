@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -80,7 +80,7 @@ namespace BallMaze
             TreeMazeBuilder mazeBuilder = new TreeMazeBuilder(level, noOfGates);
             IPassage maze = mazeBuilder.Build();
 
-            string containerPrediction = maze.TraverseNextGate();
+            string containerPrediction = maze.TraverseGateInOppositeDirection();
 
             Dictionary<int, string> ballPredictions = new Dictionary<int, string>();
 
