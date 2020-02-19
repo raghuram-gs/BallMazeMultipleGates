@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace BallMaze
 {
@@ -7,8 +7,8 @@ namespace BallMaze
         int No { get; }
         string ReceiveBall(Ball ball);
         bool HasBall { get; }
-        string TraverseNextGate();
-        string TraverseForBallNo(decimal ballNo);
+        string TraverseGateInOppositeDirection();
+        string TraverseForBallNo(int ballNo);
         List<IPassage> GetChildren();
     }
 }
