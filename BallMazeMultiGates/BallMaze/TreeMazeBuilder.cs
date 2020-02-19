@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace BallMaze
@@ -7,8 +7,7 @@ namespace BallMaze
 	{
 		private int mazeLevel;
 		private int noOfGates;
-
-
+		
 		internal TreeMazeBuilder(int level, int gates)
 		{
 			mazeLevel = level;
