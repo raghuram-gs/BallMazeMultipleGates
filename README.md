@@ -1,3 +1,3 @@
-# BallMazeMultipleGates
+# Design
 
 ![](BallMazeMultiGates/BallMazeApproachDesign.png)
