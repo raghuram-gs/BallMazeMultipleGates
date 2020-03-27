@@ -7,7 +7,7 @@ Algorithm for predicting which container will recevice which ball number
 Simulation of the system
 Match the prediction and outcome
 
-![](BallMazeMultiGates/BallMazeProblem.png)
+![](BallMazeMultiGates/ballMazeProblem.png)
 
 
 # Design
